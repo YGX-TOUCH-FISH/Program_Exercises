@@ -1,0 +1,24 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+D:/OOP1-Matrix/module/main.cpp
+iostream
+-
+playcoin.h
+D:/OOP1-Matrix/module/playcoin.h
+
+D:/OOP1-Matrix/module/playcoin.cpp
+ctime
+-
+iostream
+-
+playcoin.h
+D:/OOP1-Matrix/module/playcoin.h
+
+D:/OOP1-Matrix/module/playcoin.h
+
