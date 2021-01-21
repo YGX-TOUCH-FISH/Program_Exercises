@@ -1,0 +1,34 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+D:/module_create/Member_Manager/Member_block.h
+Member_message.h
+D:/module_create/Member_Manager/Member_message.h
+stdio.h
+D:/module_create/Member_Manager/stdio.h
+
+D:/module_create/Member_Manager/Member_message.h
+string
+-
+iostream
+-
+
+D:/module_create/Member_Manager/Member_system.h
+Member_block.h
+D:/module_create/Member_Manager/Member_block.h
+
+D:/module_create/Member_Manager/main.cpp
+Member_block.h
+D:/module_create/Member_Manager/Member_block.h
+Member_system.h
+D:/module_create/Member_Manager/Member_system.h
+string
+-
+iostream
+-
+
