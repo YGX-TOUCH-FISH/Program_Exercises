@@ -46,6 +46,30 @@ LongLongInt::LongLongInt(const string &number) {
     }
 }
 
+LongLongInt::LongLongInt(const int &number) {
+    head = new single;
+    head->next = nullptr;
+    if (number < 0)head->data = 1;
+    else head->data = 0;
+
+    int num = number;
+    string value;
+    if (num < 0)num = -num;
+    while (num != 0){
+        value += num%10 + '0';
+        num /= 10;
+    }
+    length = value.length();
+    reverse(value.begin(),value.end());
+    for(int i = 0 ; i < length ; ++i){
+        single *point;
+        point = new single;
+        point->data = value[i] - '0';
+        point->next = head->next;
+        head->next = point;
+    }
+}
+
 LongLongInt LongLongInt::operator+(const LongLongInt &ex) const {
     string number1 = ConvertToString(*this);
     string number2 = ConvertToString(ex);
@@ -426,7 +450,7 @@ LongLongInt LongLongInt::operator*(const LongLongInt &ex) const {
 }
 
 LongLongInt &LongLongInt::operator++() {
-    LongLongInt bit("1");
+    LongLongInt bit(1);
     *this = *this + bit;
     return *this;
 }
@@ -436,13 +460,13 @@ LongLongInt LongLongInt::operator++(int x) {
     if (head->data == 1)value += '-';
     reverse(value.begin(),value.end());
     LongLongInt answer(value);
-    LongLongInt bit("1");
+    LongLongInt bit(1);
     *this = *this + bit;
     return answer;
 }
 
 LongLongInt &LongLongInt::operator--() {
-    LongLongInt bit("-1");
+    LongLongInt bit(-1);
     *this = *this + bit;
     return *this;
 }
@@ -452,7 +476,7 @@ LongLongInt LongLongInt::operator--(int x){
     if (head->data == 1)value += '-';
     reverse(value.begin(),value.end());
     LongLongInt answer(value);
-    LongLongInt bit("-1");
+    LongLongInt bit(-1);
     *this = *this + bit;
     return answer;
 }
@@ -472,6 +496,29 @@ LongLongInt &LongLongInt::operator=(const LongLongInt &ex) {
         pointer->data = i - '0';
         pointer->next = head->next;
         head->next = pointer;
+    }
+    return *this;
+}
+
+LongLongInt &LongLongInt::operator=(const int &ex) {
+    clear(*this);
+    if (ex >= 0)this->head->data = 0;
+    if (ex < 0)this->head->data = 1;
+    int num = ex;
+    string value;
+    if (num < 0)num = -num;
+    while (num != 0){
+        value += num%10 + '0';
+        num /= 10;
+    }
+    length = value.length();
+    reverse(value.begin(),value.end());
+    for(int i = 0 ; i < length ; ++i){
+        single *point;
+        point = new single;
+        point->data = value[i] - '0';
+        point->next = head->next;
+        head->next = point;
     }
     return *this;
 }
@@ -628,25 +675,6 @@ string ConvertToString(const LongLongInt &ex){
     }
     return number;
 }
-
-LongLongInt power(const LongLongInt &ex, const int &x){
-    if (ex.head->data == 0 && ex.head->next->data == 0 && x == 0){
-        LongLongInt answer("1");
-        return answer;
-    }//0^0 == 1;
-    string value = ConvertToString(ex);
-    if (ex.head->data == 1)value += '-';
-    reverse(value.begin(),value.end());
-    LongLongInt answer(value);
-    for(int i = 0 ; i < x ; ++i){
-        single *p ;
-        p = new single;
-        p->data = 0;
-        p->next = answer.head->next;
-        answer.head->next = p;
-    }
-    return answer;
-}; // ex*(10^x)
 
 string multiply(const string &a, const string &b){
     //a , b: reverse order
