@@ -13,6 +13,7 @@ struct single{
     int data;
     single *next;
 };
+
 class LongLongInt{
 private:
     single *head;
@@ -20,9 +21,11 @@ private:
 public:
     LongLongInt();
 
-    LongLongInt(const string &number);//opposite order
+    explicit LongLongInt(const string &number);
 
     LongLongInt operator+(const LongLongInt &ex)const;
+
+    LongLongInt operator-(const LongLongInt &ex)const;
 
     LongLongInt &operator=(const LongLongInt &ex);
 
@@ -50,5 +53,7 @@ bool check(string &a);
 void clear(LongLongInt &ex);
 
 string ConvertToString(const LongLongInt &ex);
-//original save && opposite order
+//original save && reverse order
+
+
 #endif //LONGLONGINT_LLINT_H

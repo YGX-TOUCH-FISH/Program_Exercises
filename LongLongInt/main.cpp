@@ -2,7 +2,8 @@
 #include "LLINT.h"
 using namespace std;
 int main() {
-    LongLongInt a,b;
+    LongLongInt a , b;
     cin>>a>>b;
-    cout<<a+b;
+    cout<<a-b;
+    return 0;
 }

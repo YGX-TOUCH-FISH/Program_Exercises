@@ -398,6 +398,22 @@ LongLongInt LongLongInt::operator+(const LongLongInt &ex) const {
     return answer;
 }
 
+LongLongInt LongLongInt::operator-(const LongLongInt &ex) const {
+    string tmp = ConvertToString(ex);
+
+    if (ex.head->data == 1){
+        reverse(tmp.begin(),tmp.end());
+        LongLongInt other(tmp);
+        return (*this + other);
+    }//*this - n
+    if (ex.head->data == 0){
+        tmp += '-';
+        reverse(tmp.begin(),tmp.end());
+        LongLongInt other(tmp);
+        return (*this + other);
+    }
+}
+
 LongLongInt &LongLongInt::operator=(const LongLongInt &ex) {
     if (this == &ex)return *this;
     //to handle self-assignment
@@ -483,7 +499,7 @@ bool LongLongInt::operator<(const LongLongInt &ex) const{
 istream &operator>>(istream &is ,LongLongInt &ex){
     string number;
     is>>number;
-//    if (!check(number))return is;//convert it to cerr?
+    if (!check(number))return is;//convert it to cerr?
     clear(ex);
     if (number[0] == '-'){
         ex.head->data = 1;//negative
@@ -526,9 +542,7 @@ bool check(string &a){
         }
         for(int i = 0 ; i < a.length() ; ++i){
             if (a[i] < '0' || a[i] > '9')return false;
-
         }
-
         return true;
     }
     if (a[0] == '-'){

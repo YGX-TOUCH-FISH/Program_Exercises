@@ -6,10 +6,6 @@
 
 #IncludeRegexTransform: 
 
-D:/module_create/LongLongInt/LLINT.cpp
-LLINT.h
-D:/module_create/LongLongInt/LLINT.h
-
 D:/module_create/LongLongInt/LLINT.h
 iostream
 -
@@ -19,4 +15,10 @@ cmath
 -
 algorithm
 -
+
+D:/module_create/LongLongInt/main.cpp
+iostream
+-
+LLINT.h
+D:/module_create/LongLongInt/LLINT.h
 
