@@ -1,0 +1,3 @@
+D:/module_create/LongLongInt/cmake-build-debug/CMakeFiles/LongLongInt.dir
+D:/module_create/LongLongInt/cmake-build-debug/CMakeFiles/edit_cache.dir
+D:/module_create/LongLongInt/cmake-build-debug/CMakeFiles/rebuild_cache.dir

@@ -1,0 +1,22 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+D:/module_create/LongLongInt/LLINT.cpp
+LLINT.h
+D:/module_create/LongLongInt/LLINT.h
+
+D:/module_create/LongLongInt/LLINT.h
+iostream
+-
+string
+-
+cmath
+-
+algorithm
+-
+
