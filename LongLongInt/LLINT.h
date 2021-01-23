@@ -27,6 +27,16 @@ public:
 
     LongLongInt operator-(const LongLongInt &ex)const;
 
+    LongLongInt operator*(const LongLongInt &ex)const;
+
+    LongLongInt &operator++();
+
+    LongLongInt operator++(int x);
+
+    LongLongInt &operator--();
+
+    LongLongInt operator--(int x);
+
     LongLongInt &operator=(const LongLongInt &ex);
 
     bool operator ==(const LongLongInt &ex)const;
@@ -42,6 +52,8 @@ public:
     friend void clear(LongLongInt &ex);
 
     friend string ConvertToString(const LongLongInt &ex);
+
+    friend LongLongInt power(const LongLongInt &ex , const int &x);
 };
 
 istream& operator >>(istream &is , LongLongInt &ex);
@@ -53,6 +65,10 @@ bool check(string &a);
 void clear(LongLongInt &ex);
 
 string ConvertToString(const LongLongInt &ex);
+
+LongLongInt power(const LongLongInt &ex , const int &x);
+
+string multiply(const string &a , const string &b);
 //original save && reverse order
 
 

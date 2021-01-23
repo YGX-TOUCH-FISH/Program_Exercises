@@ -414,6 +414,49 @@ LongLongInt LongLongInt::operator-(const LongLongInt &ex) const {
     }
 }
 
+LongLongInt LongLongInt::operator*(const LongLongInt &ex) const {
+    string number1 = ConvertToString(*this);
+    string number2 = ConvertToString(ex);
+    string number = multiply(number1,number2);
+    if (head->data + ex.head->data == 1)
+        number += '-';
+    reverse(number.begin(),number.end());
+    LongLongInt answer(number);
+    return answer;
+}
+
+LongLongInt &LongLongInt::operator++() {
+    LongLongInt bit("1");
+    *this = *this + bit;
+    return *this;
+}
+
+LongLongInt LongLongInt::operator++(int x) {
+    string value = ConvertToString(*this);
+    if (head->data == 1)value += '-';
+    reverse(value.begin(),value.end());
+    LongLongInt answer(value);
+    LongLongInt bit("1");
+    *this = *this + bit;
+    return answer;
+}
+
+LongLongInt &LongLongInt::operator--() {
+    LongLongInt bit("-1");
+    *this = *this + bit;
+    return *this;
+}
+
+LongLongInt LongLongInt::operator--(int x){
+    string value = ConvertToString(*this);
+    if (head->data == 1)value += '-';
+    reverse(value.begin(),value.end());
+    LongLongInt answer(value);
+    LongLongInt bit("-1");
+    *this = *this + bit;
+    return answer;
+}
+
 LongLongInt &LongLongInt::operator=(const LongLongInt &ex) {
     if (this == &ex)return *this;
     //to handle self-assignment
@@ -585,5 +628,53 @@ string ConvertToString(const LongLongInt &ex){
     }
     return number;
 }
-// return value-string in reverse order
-// WITHOUT +/- !!! (abs -value)
+
+LongLongInt power(const LongLongInt &ex, const int &x){
+    if (ex.head->data == 0 && ex.head->next->data == 0 && x == 0){
+        LongLongInt answer("1");
+        return answer;
+    }//0^0 == 1;
+    string value = ConvertToString(ex);
+    if (ex.head->data == 1)value += '-';
+    reverse(value.begin(),value.end());
+    LongLongInt answer(value);
+    for(int i = 0 ; i < x ; ++i){
+        single *p ;
+        p = new single;
+        p->data = 0;
+        p->next = answer.head->next;
+        answer.head->next = p;
+    }
+    return answer;
+}; // ex*(10^x)
+
+string multiply(const string &a, const string &b){
+    //a , b: reverse order
+    unsigned length1 , length2;
+    int *save_a , *save_b , *product;
+    string answer;
+    length1 = a.length();
+    length2 = b.length();
+    save_a = new int [length1]{0};
+    save_b = new int [length2]{0};
+    product = new int [length1 + length2]{0};
+    for(int i = 0 ; i < length1 ; ++i)
+        save_a[i] = a[i] - '0';
+    for(int i = 0 ; i < length2 ; ++i)
+        save_b[i] = b[i] - '0';
+    for(int i = 0 ; i < length1 ; ++i){
+        for(int j = 0 ; j < length2 ; ++j){
+            product[i+j] += save_a[i]*save_b[j];
+        }
+    }
+    for(int i = 0 ; i < length1+length2 - 1 ; ++i){
+        if (product[i] >= 10){
+            product[i+1] += product[i]/10;
+            product[i] %= 10;
+        }
+        answer += '0' + product[i];
+    }
+    if (product[length1+length2-1] != 0)
+        answer += '0' + product[length1+length2-1];
+    return answer;
+}
