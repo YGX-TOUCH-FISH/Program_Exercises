@@ -142,32 +142,32 @@ library_management/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\library_management.dir\build.make CMakeFiles/library_management.dir/build
 .PHONY : library_management/fast
 
-boo.obj: boo.cpp.obj
+book.obj: book.cpp.obj
 
-.PHONY : boo.obj
+.PHONY : book.obj
 
 # target to build an object file
-boo.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\library_management.dir\build.make CMakeFiles/library_management.dir/boo.cpp.obj
-.PHONY : boo.cpp.obj
+book.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\library_management.dir\build.make CMakeFiles/library_management.dir/book.cpp.obj
+.PHONY : book.cpp.obj
 
-boo.i: boo.cpp.i
+book.i: book.cpp.i
 
-.PHONY : boo.i
+.PHONY : book.i
 
 # target to preprocess a source file
-boo.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\library_management.dir\build.make CMakeFiles/library_management.dir/boo.cpp.i
-.PHONY : boo.cpp.i
+book.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\library_management.dir\build.make CMakeFiles/library_management.dir/book.cpp.i
+.PHONY : book.cpp.i
 
-boo.s: boo.cpp.s
+book.s: book.cpp.s
 
-.PHONY : boo.s
+.PHONY : book.s
 
 # target to generate assembly for a file
-boo.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\library_management.dir\build.make CMakeFiles/library_management.dir/boo.cpp.s
-.PHONY : boo.cpp.s
+book.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\library_management.dir\build.make CMakeFiles/library_management.dir/book.cpp.s
+.PHONY : book.cpp.s
 
 main.obj: main.cpp.obj
 
@@ -205,9 +205,9 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... library_management
-	@echo ... boo.obj
-	@echo ... boo.i
-	@echo ... boo.s
+	@echo ... book.obj
+	@echo ... book.i
+	@echo ... book.s
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s

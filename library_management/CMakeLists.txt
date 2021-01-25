@@ -3,4 +3,4 @@ project(library_management)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(library_management main.cpp book.h boo.cpp)
+add_executable(library_management main.cpp book.cpp book.h)

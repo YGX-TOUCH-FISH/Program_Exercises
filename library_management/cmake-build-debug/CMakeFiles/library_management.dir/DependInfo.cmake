@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "D:/anoChapter12/library_management/boo.cpp" "D:/anoChapter12/library_management/cmake-build-debug/CMakeFiles/library_management.dir/boo.cpp.obj"
+  "D:/anoChapter12/library_management/book.cpp" "D:/anoChapter12/library_management/cmake-build-debug/CMakeFiles/library_management.dir/book.cpp.obj"
   "D:/anoChapter12/library_management/main.cpp" "D:/anoChapter12/library_management/cmake-build-debug/CMakeFiles/library_management.dir/main.cpp.obj"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")

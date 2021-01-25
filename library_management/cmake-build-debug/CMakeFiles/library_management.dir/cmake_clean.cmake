@@ -1,5 +1,5 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/library_management.dir/boo.cpp.obj"
+  "CMakeFiles/library_management.dir/book.cpp.obj"
   "CMakeFiles/library_management.dir/main.cpp.obj"
   "liblibrary_management.dll.a"
   "library_management.exe"

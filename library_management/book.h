@@ -4,24 +4,32 @@
 
 #ifndef LIBRARY_MANAGEMENT_BOOK_H
 #define LIBRARY_MANAGEMENT_BOOK_H
-#include <cstring>
 #include <iostream>
 #include <iomanip>
-#include <fstream>
+#include <string>
 using namespace std;
-class book{
-    int no;
-    char name[20];
-    int borrowed;
 
+class err{
+    string message;
 public:
-    book(const char *s = "" , int total = 0);
+    explicit err(const string &ex);
 
-    void borrowbook(int readerNo);
-
-    void returnbook();
-
-    void display()const;
+    void explain();
 };
+
+class book{
+    int number;
+    string name;
+    int borrow_sign;
+public:
+    book(const string &s = "", int total_number = 0);
+
+    void borrow_book(const int &index);
+
+    void return_book(const int &index);
+
+    void display_msg();
+};
+
 
 #endif //LIBRARY_MANAGEMENT_BOOK_H

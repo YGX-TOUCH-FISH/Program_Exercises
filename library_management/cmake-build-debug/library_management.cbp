@@ -80,7 +80,7 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="D:/anoChapter12/library_management/boo.cpp">
+		<Unit filename="D:/anoChapter12/library_management/book.cpp">
 			<Option target="library_management"/>
 		</Unit>
 		<Unit filename="D:/anoChapter12/library_management/book.h">

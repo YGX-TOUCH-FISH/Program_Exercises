@@ -3,118 +3,124 @@
 #include "book.h"
 using namespace std;
 void init();
-
 void addbook();
-
 void borrow();
-
 void back();
-
-void displaybook();
-
-void help();
+void show_message();
+void createInvertFile();
 int main() {
-    int select;
-    void (*func[5])()= {init ,  addbook , borrow , back, displaybook};
-    help();
-    while (true){
-        cin>>select;
-        if (select == -1)break;
-        if (select >= 5)help();
-        func[select]();
-    }
-    cout<<"wish you a nice day!";
+
+
     return 0;
 }
-void init(){
-    ofstream outfile("book");
-    int no = 0;
 
-    outfile.write(reinterpret_cast<char *>(&no), sizeof(no));
+void init(){
+    ofstream outfile;
+    outfile.open("booklist");
+    int total_number = 0;
+    outfile.write(reinterpret_cast<char *>(&total_number), sizeof(total_number));
     outfile.close();
 }
 
 void addbook(){
-    //open the database
-    fstream outfile("book");outfile.seekg(0);outfile.seekp(0);
-
-    char ch[20];
-    book *additive;
-    int currentno;
-    outfile.read(reinterpret_cast<char *>(&currentno),sizeof (currentno));
-    //update current number && make a new book
-    cout<<"please input the name of book:";
-    cin>>ch;
-    ++currentno;
-    additive = new book(ch , currentno);
-    //add message
-    outfile.seekp(0,ios::end);
-    outfile.write(reinterpret_cast<char *>(additive),sizeof (*additive));
-    delete additive;
-    //update current number in file
-    outfile.seekp(0);
-    outfile.write(reinterpret_cast<char *>(&currentno),sizeof (currentno));
-
-    outfile.close();
+    int total_number;
+    fstream iofile;
+    iofile.open("booklist");
+    iofile.seekg(0);
+    iofile.read(reinterpret_cast<char *>(&total_number), sizeof(total_number));
+    ++total_number;
+    string a;
+    book *bk;
+    while (true){
+        cout<<"please input book name:\n";
+        cin>>a;
+        try {
+            bk = new book(a,total_number);
+            break;
+        } catch (err &ex) {
+            ex.explain();
+            continue;
+        }
+    }
+    iofile.seekp(0);
+    iofile.write(reinterpret_cast<char *>(&total_number), sizeof(total_number));
+    iofile.seekp((total_number-1)*sizeof(*bk) + sizeof(total_number));
+    iofile.write(reinterpret_cast<char *>(bk), sizeof(*bk));
+    delete bk;
+    iofile.close();
 }
 
 void borrow(){
-    int booknumber , readernumber;
-    fstream outfile("book");outfile.seekp(0);outfile.seekg(0);
+    int bknum;
+    int readernum;
     book bk;
-
-    cout<<"please input the number of book and the number of reader:"<<endl;
-    cin>>booknumber>>readernumber;
-
-    outfile.seekg((booknumber-1)*sizeof(book) + sizeof(int));
-    outfile.read(reinterpret_cast<char *>(&bk), sizeof(bk));
-
-    bk.borrowbook(readernumber);
-
-    outfile.seekp((booknumber-1)*sizeof(book) + sizeof(int));
-    outfile.write(reinterpret_cast<char *>(&bk), sizeof(bk));
-
-    outfile.close();
+    fstream iofile;
+    iofile.open("booklist");
+    while (true){
+        try {
+            cout<<"please input book number:\n";
+            cin>>bknum;
+            iofile.seekg((bknum-1)*sizeof(book)+sizeof(int));
+            cout<<"please input reader number\n";
+            cin>>readernum;
+            iofile.read(reinterpret_cast<char *>(&bk), sizeof(bk));
+            bk.borrow_book(readernum);
+            break;
+        } catch (err &ex) {
+            ex.explain();
+            continue;
+        }
+    }
 }
 
 void back(){
-    int booknumber;
+    int bknum;
+    int readernum;
     book bk;
-    fstream outfile("book");
-
-    cout<<"please input the book's number that should be returned:"<<endl;
-    cin>>booknumber;
-
-    outfile.seekg((booknumber-1)* sizeof(bk)+ sizeof(int ));
-    outfile.read(reinterpret_cast<char *>(&bk), sizeof(bk));
-
-    bk.returnbook();
-
-    outfile.seekp((booknumber-1)* sizeof(bk)+ sizeof(int ));
-    outfile.write(reinterpret_cast<char *>(&bk), sizeof(bk));
-
-    outfile.close();
-}
-
-void displaybook(){
-    ifstream infile("book");
-    book bk;
-    cout<<"NUMBER                NAME             BORROW\n";
-    infile.seekg(sizeof(int ));
-    infile.read(reinterpret_cast<char *>(&bk),sizeof(bk));
-    while (!infile.eof()){
-        bk.display();
-        infile.read(reinterpret_cast<char *>(&bk),sizeof(bk));
+    fstream iofile;
+    iofile.open("booklist");
+    while (true){
+        try {
+            cout<<"please input book number:\n";
+            cin>>bknum;
+            iofile.seekg((bknum-1)*sizeof(book)+sizeof(int));
+            cout<<"please input reader number\n";
+            cin>>readernum;
+            iofile.read(reinterpret_cast<char *>(&bk), sizeof(bk));
+            bk.return_book(readernum);
+            break;
+        } catch (err &ex) {
+            ex.explain();
+            continue;
+        }
     }
-    infile.close();
 }
 
-void help(){
-    cout<<"welcome to my library!"<<endl;
-    cout<<"-1 ---exit\n"
-          "0  ---initialize the file \n"
-          "1  ---add a book\n"
-          "2  ---borrow a book\n"
-          "3  ---return a book\n"
-          "4  ---show all  the book's message\n";
+void show_message(){
+    book bk;
+    fstream iofile("booklist");
+    iofile.seekg(sizeof(int));
+    iofile.read(reinterpret_cast<char *>(&bk), sizeof(bk));
+    cout<<setw(10)<<"NUMBER"<<setw(20)<<"NAME"<<setw(10)<<"BORROW"<<'\n';
+    while (!iofile.eof()){
+        bk.display_msg();
+        iofile.read(reinterpret_cast<char *>(&bk), sizeof(bk));
+    }
+    iofile.close();
 }
+
+//void createInvertFile(){
+//    fstream outlist;
+//    outlist.open("booklist");
+//    if (!outlist){
+//        cerr<<"fail to open booklist\n";
+//        return;
+//    }
+//    ofstream outkeylist;
+//    outkeylist.open("keywordlist");
+//    if (!outkeylist){
+//        cerr<<"fail to open keywordlist\n";
+//        return;
+//    }
+//
+//}
