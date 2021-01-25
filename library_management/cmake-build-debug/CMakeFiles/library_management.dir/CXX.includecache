@@ -1,0 +1,26 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+D:/anoChapter12/library_management/book.h
+cstring
+-
+iostream
+-
+iomanip
+-
+fstream
+-
+
+D:/anoChapter12/library_management/main.cpp
+iostream
+-
+fstream
+-
+book.h
+D:/anoChapter12/library_management/book.h
+
